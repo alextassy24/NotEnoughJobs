@@ -1,5 +1,5 @@
 <template>
-	<v-footer class="flex flex-col">
+	<v-footer class="flex flex-col bg-gray-200">
 		<div class="bg-blue-400 flex w-100 align-center px-4">
 			<strong>Get connected with us on social networks!</strong>
 
@@ -31,7 +31,7 @@
 		</div>
 
 		<div class="px-4 py-2 bg-black text-center w-100">
-			{{ new Date().getFullYear() }} — <strong>Not Enough Jobs</strong>
+			{{ new Date().getFullYear() }} — <strong> &copy; Not Enough Jobs</strong>
 		</div>
 	</v-footer>
 </template>

@@ -2,19 +2,18 @@
 	<v-form v-model="valid" class="max-w-md mx-auto">
 		<v-container>
 			<h1 class="text-center m-5 font-bold text-lg">Register</h1>
-			<v-row>
+
+			<v-row align="center">
 				<v-col cols="12">
-					<v-text-field
-						v-model="email"
-						label="Email"
-						outlined
-						type="email"
-						required
-					></v-text-field>
+					<p class="m-2">Are you an employee or an employer?</p>
+					<v-radio-group v-model="selectedRole" inline class="flex justify-evenly">
+						<v-radio color="info" label="Employee" value="Employee"></v-radio>
+						<v-radio color="info" label="Employer" value="Employer"></v-radio>
+					</v-radio-group>
 				</v-col>
 			</v-row>
 
-			<v-row>
+			<v-row v-if="selectedRole === 'Employee'">
 				<v-col cols="12">
 					<v-text-field
 						v-model="firstName"
@@ -26,13 +25,61 @@
 				</v-col>
 			</v-row>
 
-			<v-row>
+			<v-row v-if="selectedRole === 'Employee'">
 				<v-col cols="12">
 					<v-text-field
 						v-model="lastName"
 						label="Last Name"
 						outlined
 						type="text"
+						required
+					></v-text-field>
+				</v-col>
+			</v-row>
+
+			<v-row v-if="selectedRole === 'Employee'">
+				<v-col cols="12">
+					<v-text-field
+						v-model="dateOfBirth"
+						label="Date of Birth"
+						outlined
+						type="date"
+						required
+					></v-text-field>
+				</v-col>
+			</v-row>
+
+			<v-row v-if="selectedRole === 'Employer'">
+				<v-col cols="12">
+					<v-text-field
+						v-model="companyName"
+						label="Company Name"
+						outlined
+						type="text"
+						required
+					></v-text-field>
+				</v-col>
+			</v-row>
+
+			<v-row v-if="selectedRole === 'Employer'">
+				<v-col cols="12">
+					<v-text-field
+						v-model="foundedDate"
+						label="Founded Date"
+						outlined
+						type="date"
+						required
+					></v-text-field>
+				</v-col>
+			</v-row>
+
+			<v-row>
+				<v-col cols="12">
+					<v-text-field
+						v-model="email"
+						label="Email"
+						outlined
+						type="email"
 						required
 					></v-text-field>
 				</v-col>
@@ -92,11 +139,12 @@ export default {
 	data() {
 		return {
 			valid: false,
-			fistName: "",
+			selectedRole: "",
+			firstName: "",
 			lastName: "",
-			email: "",
-			password: "",
-			confirmPassword: "",
+			dateOfBirth: null,
+			companyName: "",
+			foundedDate: null,
 			agreeTerms: "",
 		};
 	},
