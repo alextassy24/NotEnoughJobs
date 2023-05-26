@@ -5,9 +5,6 @@
 				<v-btn class="m-5 font-bold" variant="text">Not enough jobs </v-btn>
 			</router-link>
 			<div>
-				<router-link to="/jobs">
-					<v-btn class="mt-5 font-bold"> Find a job </v-btn>
-				</router-link>
 				<router-link to="/about">
 					<v-btn class="mt-5 font-bold"> About </v-btn>
 				</router-link>

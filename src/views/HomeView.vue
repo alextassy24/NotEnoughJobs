@@ -1,24 +1,35 @@
 <template>
-	<div class="py-5 flex justify-between items-center w-50">
-		<h1 class="m-10 font-bold text-3xl">Available Jobs</h1>
-		<div class="w-1/4">
-			<!-- Set width to 25% -->
-			<SearchBar />
+	<div class="grid grid-cols-7 gap-4">
+		<div class="col-span-1 ml-10 mt-10">
+			<div class="p-5 bg-slate-300 fixed">
+				<h3 class="mb-5 font-bold text-xl">Categories</h3>
+				<Categories :categories="categories" />
+			</div>
 		</div>
+		<div class="col-span-5">
+			<div class="mt-7 flex justify-between items-center w-75">
+				<h1 class="ml-10 font-bold text-3xl">Available Jobs</h1>
+				<div class="w-1/4">
+					<SearchBar />
+				</div>
+			</div>
+			<Jobs :jobs="jobs" />
+		</div>
+		<div class="col-span-1"></div>
 	</div>
-
-	<Jobs :jobs="jobs" />
 </template>
 
 <script>
 import Jobs from "../components/Jobs";
 import SearchBar from "../components/SearchBar";
+import Categories from "../components/Categories.vue";
 
 export default {
 	name: "Home",
 	components: {
 		Jobs,
 		SearchBar,
+		Categories,
 	},
 	data() {
 		return {
@@ -63,23 +74,23 @@ export default {
 			categories: [
 				{
 					id: "1",
-					type: "Software Engineer",
-					count: "10",
+					name: "Software Engineer",
+					jobs: "10",
 				},
 				{
 					id: "2",
-					type: "DevOps Engineer",
-					count: "9",
+					name: "DevOps Engineer",
+					jobs: "9",
 				},
 				{
 					id: "3",
-					type: "QA Engineer",
-					count: "5",
+					name: "QA Engineer",
+					jobs: "5",
 				},
 				{
-					id: "3",
-					type: "Manual Tester",
-					count: "2",
+					id: "4",
+					name: "Manual Tester",
+					jobs: "2",
 				},
 			],
 		};

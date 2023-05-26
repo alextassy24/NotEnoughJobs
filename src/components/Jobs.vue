@@ -1,6 +1,6 @@
 <template>
 	<div :key="job.id" v-for="job in jobs">
-		<job :job="job" />
+		<Job :job="job" />
 	</div>
 </template>
 

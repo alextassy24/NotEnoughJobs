@@ -4,7 +4,6 @@ import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import AboutView from "../views/AboutView.vue";
 import ContactView from "../views/ContactView.vue";
-import JobsView from "../views/JobsView.vue";
 import ForgotPasswordView from "../views/ForgotPasswordView.vue";
 
 const routes = [
@@ -32,11 +31,6 @@ const routes = [
 		path: "/about",
 		name: "about",
 		component: AboutView,
-	},
-	{
-		path: "/jobs",
-		name: "jobs",
-		component: JobsView,
 	},
 	{
 		path: "/forgot-password",
