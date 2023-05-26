@@ -1,5 +1,5 @@
 <template v-slot:append>
-	<v-app-bar scroll-behavior="collapse">
+	<v-app-bar>
 		<v-row class="flex justify-between bg-blue-400">
 			<router-link to="/">
 				<v-btn class="m-5 font-bold" variant="text">Not enough jobs </v-btn>
