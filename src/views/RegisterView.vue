@@ -1,5 +1,5 @@
 <template>
-	<v-form v-model="valid" class="max-w-md mx-auto">
+	<v-form v-model="valid" class="max-w-md mx-auto" @submit.prevent="submitForm">
 		<v-container>
 			<h1 class="text-center m-5 font-bold text-lg">Register</h1>
 
@@ -18,6 +18,7 @@
 					<v-text-field
 						v-model="firstName"
 						label="First Name"
+						name="firstName"
 						outlined
 						type="text"
 						required
@@ -30,6 +31,7 @@
 					<v-text-field
 						v-model="lastName"
 						label="Last Name"
+						name="lastName"
 						outlined
 						type="text"
 						required
@@ -42,6 +44,7 @@
 					<v-text-field
 						v-model="dateOfBirth"
 						label="Date of Birth"
+						name="dateOfBirth"
 						outlined
 						type="date"
 						required
@@ -54,6 +57,7 @@
 					<v-text-field
 						v-model="companyName"
 						label="Company Name"
+						name="companyName"
 						outlined
 						type="text"
 						required
@@ -66,6 +70,7 @@
 					<v-text-field
 						v-model="foundedDate"
 						label="Founded Date"
+						name="foundedDate"
 						outlined
 						type="date"
 						required
@@ -78,6 +83,7 @@
 					<v-text-field
 						v-model="email"
 						label="Email"
+						name="email"
 						outlined
 						type="email"
 						required
@@ -90,6 +96,7 @@
 					<v-text-field
 						v-model="password"
 						label="Password"
+						name="password"
 						outlined
 						type="password"
 						required
@@ -102,6 +109,7 @@
 					<v-text-field
 						v-model="confirmPassword"
 						label="Confirm password"
+						name="confirmPassword"
 						outlined
 						type="password"
 						required
@@ -135,22 +143,51 @@
 </template>
 
 <script>
+import axios from "axios";
+import moment from "moment";
+
 export default {
 	data() {
 		return {
 			valid: false,
-			selectedRole: "",
+			selectedRole: "Employee",
 			firstName: "",
 			lastName: "",
-			dateOfBirth: null,
 			companyName: "",
-			foundedDate: null,
+			email: "",
+			foundedDate: "",
+			dateOfBirth: "",
+			password: "",
+			confirmPassword: "",
 			agreeTerms: "",
 		};
 	},
 	methods: {
-		submitForm() {
-			// Submit form logic
+		async submitForm() {
+			let formattedDateOfBirth = "";
+			let form_first_name =
+				this.firstName != "" && this.companyName == "" ? this.firstName : this.companyName;
+			if (this.dateOfBirth) {
+				formattedDateOfBirth = moment(this.dateOfBirth).format("YYYY-MM-DD");
+			}
+			const formData = {
+				first_name: form_first_name,
+				last_name: this.lastName,
+				email: this.email,
+				date_of_birth: formattedDateOfBirth,
+				password: this.password,
+				is_company: this.selectedRole == "Employer" ? 1 : 0,
+			};
+			console.log(formData);
+			axios
+				.post("/api/register/", formData)
+				.then((response) => {
+					this.$router.push("/login");
+					console.log(response.data);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
 		},
 	},
 };

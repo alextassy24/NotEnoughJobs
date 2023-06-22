@@ -1,19 +1,27 @@
 <template v-slot:append>
 	<v-app-bar>
-		<v-row class="flex justify-between bg-blue-400">
-			<router-link to="/">
-				<v-btn class="m-5 font-bold" variant="text">Not enough jobs </v-btn>
+		<v-row class="flex justify-between items-center bg-blue-400">
+			<router-link to="/" class="m-5 mt-7 ml-8">
+				<div class="font-bold text-xl">Not enough jobs</div>
+				<div>Stop wasting time</div>
 			</router-link>
-			<div>
-				<router-link to="/about">
-					<v-btn class="mt-5 font-bold"> About </v-btn>
+			<div class="mt-5 gap-5 pb-5">
+				<router-link to="/about" class="mx-3 font-bold"> About</router-link>
+				<router-link to="/contact" class="mx-3 font-bold"> Contact </router-link>
+				<router-link
+					v-if="!isAuthenticated"
+					to="/login"
+					class="mx-3 mr-10 p-3 rounded-lg bg-zinc-950 hover:bg-zinc-800 text-white font-bold"
+				>
+					Login
 				</router-link>
-				<router-link to="/contact">
-					<v-btn class="mt-5 font-bold"> Contact </v-btn>
-				</router-link>
-
-				<router-link to="/login">
-					<v-btn class="mt-5 mr-5 bg-white font-bold"> Login </v-btn>
+				<router-link
+					v-else
+					to="/login"
+					@click="logout"
+					class="mx-3 mr-10 p-3 rounded-lg bg-zinc-950 hover:bg-zinc-800 text-white font-bold"
+				>
+					Logout
 				</router-link>
 			</div>
 		</v-row>
@@ -21,7 +29,28 @@
 </template>
 
 <script>
-export default {
+import axios from "axios";
+import { defineComponent } from "vue";
+import { mapState } from "vuex";
+
+export default defineComponent({
 	name: "Navbar",
-};
+	computed: {
+		...mapState(["isAuthenticated", "user"]),
+	},
+	methods: {
+		logout() {
+			axios
+				.post("/api/logout/", { withCredentials: true })
+				.then((response) => {
+					this.$store.commit("removeUser");
+					this.$store.dispatch("setAuthenticated", false);
+					this.$router.push("/login");
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		},
+	},
+});
 </script>

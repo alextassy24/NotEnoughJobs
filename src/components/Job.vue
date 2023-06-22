@@ -1,8 +1,8 @@
 <template>
-	<v-card variant="tonal" class="ml-10 my-10 w-50 bg-gray-200">
+	<v-card variant="tonal" class="ml-10 my-10 w-50 p-3 bg-gray-200 rounded-xl">
 		<div class="flex justify-between">
 			<v-card-title class="text-blue-500">{{ job.title }}</v-card-title>
-			<v-chip class="m-3 bg-green-500"> {{ job.candidates }} candidates </v-chip>
+			<v-chip class="m-3 bg-zinc-950 text-white"> {{ job.candidates }} candidates </v-chip>
 		</div>
 		<div class="flex items-center">
 			<v-avatar class="ml-3" color="surface-variant" image="" size="60"></v-avatar>
@@ -12,7 +12,7 @@
 		<v-card-actions class="justify-between">
 			<div class="ml-2">
 				<p>
-					Posted at <span class="text-cyan-500">{{ job.date }}</span>
+					Posted at <span class="text-blue-500">{{ job.date }}</span>
 				</p>
 				<p>
 					{{ job.location }}

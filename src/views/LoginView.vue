@@ -1,5 +1,5 @@
 <template>
-	<v-form v-model="valid" class="max-w-md mx-auto">
+	<v-form v-model="valid" @submit.prevent="submitForm" class="max-w-md mx-auto">
 		<v-container>
 			<h1 class="text-center m-5 font-bold text-lg">Login</h1>
 			<v-row>
@@ -9,6 +9,7 @@
 						label="Email"
 						outlined
 						type="email"
+						:rules="emailRules"
 						required
 					></v-text-field>
 				</v-col>
@@ -21,6 +22,7 @@
 						label="Password"
 						outlined
 						type="password"
+						:rules="passwordRules"
 						required
 					></v-text-field>
 				</v-col>
@@ -47,7 +49,7 @@
 
 			<v-row justify="center">
 				<v-col cols="12" sm="6">
-					<v-btn class="bg-blue-400" block @click="submitForm"> Login </v-btn>
+					<v-btn class="bg-blue-400 font-bold" block @click="submitForm"> Login </v-btn>
 				</v-col>
 			</v-row>
 		</v-container>
@@ -55,6 +57,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
 	data() {
 		return {
@@ -62,11 +65,45 @@ export default {
 			email: "",
 			password: "",
 			rememberMe: false,
+			emailRules: [
+				(value) => {
+					if (value) return true;
+
+					return "Email is requred.";
+				},
+			],
+			passwordRules: [
+				(value) => {
+					if (value) return true;
+
+					return "Password is requred.";
+				},
+			],
 		};
 	},
 	methods: {
-		submitForm() {
-			// Submit form logic
+		async submitForm() {
+			const formData = {
+				email: this.email,
+				password: this.password,
+			};
+			axios
+				.post("/api/login/", formData, { withCredentials: true })
+				.then((response) => {
+					axios
+						.get("/api/user/", { withCredentials: true })
+						.then((response) => {
+							const user = response.data;
+							this.$store.commit("setUser", user);
+							this.$router.push("/");
+						})
+						.catch((error) => {
+							console.error(error);
+						});
+				})
+				.catch((error) => {
+					console.error(error);
+				});
 		},
 	},
 };
