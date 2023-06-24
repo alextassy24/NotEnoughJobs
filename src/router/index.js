@@ -7,6 +7,8 @@ import CategoriesView from "../views/CategoriesView.vue";
 import AboutView from "../views/AboutView.vue";
 import ContactView from "../views/ContactView.vue";
 import ForgotPasswordView from "../views/ForgotPasswordView.vue";
+import ProfileView from "../views/ProfileView.vue";
+import AddJobView from "../views/AddJobView.vue";
 
 const routes = [
 	{
@@ -48,6 +50,16 @@ const routes = [
 		path: "/forgot-password",
 		name: "forgot-password",
 		component: ForgotPasswordView,
+	},
+	{
+		path: "/profile",
+		name: "profile",
+		component: ProfileView,
+	},
+	{
+		path: "/add-job",
+		name: "add-job",
+		component: AddJobView,
 	},
 ];
 

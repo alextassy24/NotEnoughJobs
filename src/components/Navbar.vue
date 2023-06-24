@@ -6,6 +6,16 @@
 				<div>Stop wasting time</div>
 			</router-link>
 			<div class="mt-5 gap-5 pb-5">
+				<router-link
+					v-if="isAuthenticated && user.is_company == true"
+					to="/add-job"
+					class="mx-3 font-bold"
+				>
+					Add job
+				</router-link>
+				<router-link v-if="isAuthenticated" to="/profile" class="mx-3 font-bold">
+					Profile
+				</router-link>
 				<router-link to="/about" class="mx-3 font-bold"> About</router-link>
 				<router-link to="/contact" class="mx-3 font-bold"> Contact </router-link>
 				<router-link

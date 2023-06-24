@@ -1,7 +1,7 @@
 <template>
 	<v-form v-model="valid" @submit.prevent="submitForm" class="max-w-md mx-auto">
 		<v-container>
-			<h1 class="text-center m-5 font-bold text-lg">Login</h1>
+			<h1 class="text-center m-5 font-bold text-3xl">Login</h1>
 			<v-row>
 				<v-col cols="12">
 					<v-text-field

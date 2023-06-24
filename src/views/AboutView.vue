@@ -1,6 +1,6 @@
 <template>
 	<v-container class="mt-5">
-		<h1 class="text-center text-xl font-bold mb-5">About Us</h1>
+		<h1 class="text-center text-3xl font-bold mb-5">About Us</h1>
 		<v-row class="mt-5 text-justify">
 			<v-col cols="12" md="6">
 				<h2 class="text-2xl mb-4 font-bold">Our Story</h2>

@@ -1,8 +1,8 @@
 <template>
 	<v-container class="mt-5 bg-gray-200 mx-auto">
-		<h1 class="text-center text-xl font-bold mb-5">Contact Us</h1>
+		<h1 class="text-center text-3xl font-bold mb-5">Contact Us</h1>
 		<div class="flex flex-row items-start justify-evenly">
-			<div class="w-25 mt-5 p-3 rounded-xl">
+			<div class="w-50 mt-5 p-3 rounded-xl">
 				<v-form @submit="submitForm" class="mx-auto w-75">
 					<v-text-field v-model="name" label="Name" required></v-text-field>
 					<v-text-field
